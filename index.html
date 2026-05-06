@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Google</title>
+<style>
+  body {
+    background-color: #ffffff;
+    font-family: Times New Roman, Times, serif;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 80px;
+    color: #000;
+  }
+
+  .logo img {
+    width: 276px;
+  }
+
+  input[type="text"] {
+    width: 400px;
+    padding: 2px;
+    font-size: 14px;
+    border: 1px solid #000;
+  }
+
+  input[type="submit"],
+  input[type="button"] {
+    font-family: Times New Roman, Times, serif;
+    font-size: 13px;
+    padding: 2px 6px;
+    border: 1px solid #000;
+    background-color: #dcdcdc;
+    cursor: default;
+  }
+
+  a {
+    color: #0000cc;
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .links {
+    margin-top: 20px;
+  }
+
+  .footer {
+    margin-top: 150px;
+    font-size: 12px;
+  }
+
+  #aboutPage {
+    display: none;
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body>
+
+<div id="mainPage">
+  <div class="logo">
+    <img src="https://cdn.logojoy.com/wp-content/uploads/20230801145708/google-logo-1999-600x217.png">
+  </div>
+
+  <form id="searchForm">
+    <input type="text" id="query"><br><br>
+    <input type="submit" value="Google Search">
+    <input type="button" value="I'm Feeling Lucky" onclick="feelingLucky()">
+  </form>
+
+  <div class="links">
+    <a onclick="showAbout()">About Google</a> |
+    <a onclick="quickSearch('Stanford')">Stanford Search</a> |
+    <a onclick="quickSearch('Linux')">Linux Search</a>
+  </div>
+
+  <div class="footer">
+    Copyright ©2000 Google Inc.
+  </div>
+</div>
+
+<div id="aboutPage">
+  <h2>About Google</h2>
+  <p>Google is a search engine that helps you find information on the web.</p>
+  <p>Founded in 1998 by Larry Page and Sergey Brin at Stanford University.</p>
+  <p>This is a recreation.</p>
+  <br>
+  <a onclick="goBack()">Back to Google</a>
+</div>
+
+<script>
+  const form = document.getElementById("searchForm");
+  const queryInput = document.getElementById("query");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const query = encodeURIComponent(queryInput.value.trim());
+    if (!query) return;
+    window.location.href = `https://www.google.com/search?q=${query}&udm=14`;
+  });
+
+  function feelingLucky() {
+    const query = encodeURIComponent(queryInput.value.trim());
+    if (!query) return;
+    window.location.href = `https://www.google.com/search?q=${query}&btnI=1&udm=14`;
+  }
+
+  function quickSearch(term) {
+    const query = encodeURIComponent(term);
+    window.location.href = `https://www.google.com/search?q=${query}&udm=14`;
+  }
+
+  function showAbout() {
+    document.getElementById("mainPage").style.display = "none";
+    document.getElementById("aboutPage").style.display = "block";
+  }
+
+  function goBack() {
+    document.getElementById("aboutPage").style.display = "none";
+    document.getElementById("mainPage").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
